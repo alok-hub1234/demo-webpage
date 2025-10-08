@@ -146,7 +146,8 @@ h1 {
 }
 
 .stack-section {
-  height: 62vh;
+  /*height: 62vh;*/
+  min-height: 35vh;
   margin: 20px 0px;
   top: 0px;
   z-index: 1;
@@ -456,7 +457,7 @@ h1 {
 		margin:auto;
 	}
 	.stack-section {
-		height: 65vh;
+		/*height: 65vh;*/
 	}
 	#special-scroll-section-2 {
 		/*margin-bottom: 95rem;*/
@@ -597,7 +598,7 @@ h1 {
 		margin: 300px 0px;
 		top: 100px;
 		width: 75%;
-		height: 50vh;
+		/*height: 50vh;*/
         position: sticky;
 	}
 	.stack-wrapper {
@@ -651,7 +652,7 @@ h1 {
         margin: 300px 0px;
         top: 55px;
         width: 75%;
-		height: 55vh;
+		/*height: 55vh;*/
         position: sticky;
     }
 }
