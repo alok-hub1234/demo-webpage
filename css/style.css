@@ -146,7 +146,7 @@ h1 {
 }
 
 .stack-section {
-  height: 35vh;
+  height: 62vh;
   margin: 20px 0px;
   top: 0px;
   z-index: 1;
@@ -416,6 +416,9 @@ h1 {
 		font-size: 2.2rem;
 		width: 55%!important;
 	}
+    /*.stack-section {
+		height: 85vh;
+	}*/
 }
 
 @media (min-width: 768px) {
@@ -452,6 +455,9 @@ h1 {
 		width: 50%!important;
 		margin:auto;
 	}
+	.stack-section {
+		height: 65vh;
+	}
 	#special-scroll-section-2 {
 		/*margin-bottom: 95rem;*/
 	}
@@ -462,7 +468,11 @@ h1 {
 		font-size: 1.75rem;
 	}
 }
-
+@media (min-width: 768px) and (orientation: landscape) {
+	.stack-section {
+		height: 85vh;
+	}
+}
 @media (min-width: 992px) {
 	h1 {
 		font-size: 2.0rem;
@@ -587,6 +597,7 @@ h1 {
 		margin: 300px 0px;
 		top: 100px;
 		width: 75%;
+		height: 50vh;
         position: sticky;
 	}
 	.stack-wrapper {
@@ -640,6 +651,7 @@ h1 {
         margin: 300px 0px;
         top: 55px;
         width: 75%;
+		height: 55vh;
         position: sticky;
     }
 }
