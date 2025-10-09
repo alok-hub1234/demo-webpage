@@ -482,9 +482,9 @@ h1 {
 	}
 }
 @media (min-width: 768px) and (orientation: landscape) {
-	.stack-section {
+	/*.stack-section {
 		height: 85vh;
-	}
+	}*/
 }
 @media (min-width: 992px) {
 	h1 {
