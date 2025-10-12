@@ -1,10 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
+const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
+
+  const rightContent2 = document.getElementById('scrollableRight2');
+  const tsm_lockElement = document.getElementById('tsm-lock-zone');
+  const tsm_navbar = document.querySelector('.navbar.fixed-top');
+
+  let LOCK_POSITION_START_2;
+  let LOCK_POSITION_END_2;
+
+  // Function to calculate lock positions
+  function tsm_updateLockPositions() {
+    const tsm_rect = tsm_lockElement.getBoundingClientRect();
+    const tsm_navbarHeight = (tsm_navbar && istsmNavbarVisible()) ? tsm_navbar.offsetHeight : 0;
+
+    const tsm_extraPadding = 32; // or 10
+	  LOCK_POSITION_START_2 = tsm_rect.top + window.scrollY - tsm_navbarHeight - tsm_extraPadding;
+    LOCK_POSITION_END_2 = LOCK_POSITION_START_2 + tsm_rect.height;
+  }
+
+  // Function to check if navbar is visible (e.g., has a class like 'show' or similar)
+  function istsmNavbarVisible() {
+    // Adjust this logic to fit your actual navbar appearance logic
+    return tsm_navbar.classList.contains('show') || window.scrollY > 100; // Example threshold
+  }
+
+  // Initial calculation
+  tsm_updateLockPositions();
+  
+  /*const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
 
   const rightContent2 = document.getElementById('scrollableRight2');
   const LOCK_POSITION_START_2 = 2300;
   const LOCK_POSITION_END_2 = 2600;
-
+*/
   let inScrollZone2 = false;
   let isSnapping2 = false;
   let touchStartY2 = 0;
@@ -46,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lenis2.on('scroll', ({ scroll }) => {
     if (!isDesktop || isSnapping2) return;
-
+   tsm_updateLockPositions();
+    
     const isInLockZone2 = scroll >= LOCK_POSITION_START_2 && scroll < LOCK_POSITION_END_2;
 
     if (!inScrollZone2 && isInLockZone2) {
@@ -99,4 +128,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: false });
   }
+
 });
