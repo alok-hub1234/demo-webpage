@@ -1,9 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
+const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
+
+  const rightContent = document.getElementById('scrollableRight');
+  const lockElement = document.getElementById('lock-zone');
+  const navbar = document.querySelector('.navbar.fixed-top');
+
+  let LOCK_POSITION_START;
+  let LOCK_POSITION_END;
+
+  // Function to calculate lock positions
+  function updateLockPositions() {
+    const rect = lockElement.getBoundingClientRect();
+    const navbarHeight = (navbar && isNavbarVisible()) ? navbar.offsetHeight : 0;
+
+    const extraPadding = 32; // or 10
+	LOCK_POSITION_START = rect.top + window.scrollY - navbarHeight - extraPadding;
+    LOCK_POSITION_END = LOCK_POSITION_START + rect.height;
+  }
+
+  // Function to check if navbar is visible (e.g., has a class like 'show' or similar)
+  function isNavbarVisible() {
+    // Adjust this logic to fit your actual navbar appearance logic
+    return navbar.classList.contains('show') || window.scrollY > 100; // Example threshold
+  }
+
+  // Initial calculation
+  updateLockPositions();
+
+  
+  /*const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
 
   const rightContent = document.getElementById('scrollableRight');
   const LOCK_POSITION_START = 1300;
   const LOCK_POSITION_END = 1600;
+  */
 
   let inScrollZone = false;
   let isSnapping = false;
@@ -46,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lenis.on('scroll', ({ scroll }) => {
     if (!isDesktop || isSnapping) return;
-
+    updateLockPositions();
     const isInLockZone = scroll >= LOCK_POSITION_START && scroll < LOCK_POSITION_END;
 
     if (!inScrollZone && isInLockZone) {
@@ -99,4 +129,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: false });
   }
+
 });
